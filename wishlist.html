@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist ❤️</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f5f7fa;
+        }
+
+        header{
+            background:linear-gradient(135deg,#ff416c,#ff4b2b);
+            color:white;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 3px 10px rgba(0,0,0,.2);
+        }
+
+        .container{
+            max-width:1200px;
+            margin:40px auto;
+            padding:0 20px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:25px;
+        }
+
+        .card{
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 5px 15px rgba(0,0,0,.1);
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-6px);
+        }
+
+        .card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .content{
+            padding:18px;
+        }
+
+        .content h3{
+            color:#333;
+            margin-bottom:10px;
+        }
+
+        .price{
+            color:#16a34a;
+            font-size:22px;
+            font-weight:bold;
+            margin-bottom:15px;
+        }
+
+        .buttons{
+            display:flex;
+            gap:10px;
+        }
+
+        .btn{
+            flex:1;
+            text-align:center;
+            text-decoration:none;
+            padding:10px;
+            border-radius:8px;
+            color:white;
+            transition:.3s;
+        }
+
+        .view{
+            background:#2563eb;
+        }
+
+        .cart{
+            background:#16a34a;
+        }
+
+        .remove{
+            background:#dc2626;
+        }
+
+        .btn:hover{
+            opacity:0.9;
+        }
+
+        .empty{
+            text-align:center;
+            padding:80px 20px;
+            color:#666;
+        }
+
+        .empty a{
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 20px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>❤️ My Wishlist</h1>
+    <p>Your saved products in one place</p>
+</header>
+
+<div class="container">
+
+  
+
+    <div class="grid">
+
+    
+
+        <div class="card">
+
+       
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+     
+            <div class="content">
+
+                <h3>{{ item.name }}</h3>
+
+                <div class="price">
+                    ₹{{ item.price }}
+                </div>
+
+                <div class="buttons">
+
+                    <a href="/product/{{ item._id }}" class="btn view">
+                        👀 View
+                    </a>
+
+                    <a href="/add_to_cart/{{ item._id }}" class="btn cart">
+                        🛒 Add to Cart
+                    </a>
+
+                    <a href="/wishlist/remove/{{ item._id }}" class="btn remove">
+                        ❌ Remove
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="empty">
+        <h2>Your wishlist is empty ❤️</h2>
+        <p>Save products you like and they'll appear here.</p>
+
+        <a href="templates\checkout.html">
+            🛍️ Continue Shopping
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

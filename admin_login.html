@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            background:linear-gradient(135deg,#1e3a8a,#7c3aed);
+        }
+
+        .login-card{
+            width:380px;
+            padding:35px;
+            border-radius:18px;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(12px);
+            box-shadow:0 8px 25px rgba(0,0,0,0.3);
+            color:#fff;
+        }
+
+        .login-card h2{
+            text-align:center;
+            margin-bottom:8px;
+        }
+
+        .subtitle{
+            text-align:center;
+            margin-bottom:25px;
+            opacity:0.9;
+        }
+
+        .input-group{
+            position:relative;
+            margin-bottom:18px;
+        }
+
+        .input-group i:first-child{
+            position:absolute;
+            left:15px;
+            top:50%;
+            transform:translateY(-50%);
+            color:#666;
+        }
+
+        .input-group input{
+            width:100%;
+            padding:13px 45px;
+            border:none;
+            border-radius:10px;
+            outline:none;
+            font-size:15px;
+        }
+
+        .toggle-password{
+            position:absolute;
+            right:15px;
+            top:50%;
+            transform:translateY(-50%);
+            cursor:pointer;
+            color:#666;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:#16a34a;
+            color:#fff;
+            font-size:16px;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        button:hover{
+            background:#15803d;
+            transform:translateY(-2px);
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:18px;
+            font-size:14px;
+            opacity:0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+
+    <h2>🔐 Admin Login</h2>
+    <p class="subtitle">Sign in to access the admin dashboard</p>
+
+    <form method="POST">
+
+        <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input
+                type="email"
+                name="email"
+                placeholder="Admin Email"
+                required>
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required>
+
+            <span class="toggle-password" onclick="togglePassword()">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+        </div>
+
+        <button type="submit">
+             <a href="admin_users.html">🚀Login</a>
+        </button>
+
+    </form>
+
+    <div class="footer">
+        Secure access for authorized administrators only.
+    </div>
+
+</div>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const icon = document.querySelector(".toggle-password i");
+
+    if (password.type === "password") {
+        password.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+    } else {
+        password.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+    }
+}
+</script>
+
+</body>
+</html>

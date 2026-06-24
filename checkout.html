@@ -1,0 +1,165 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            min-height:100vh;
+            padding:40px 20px;
+        }
+
+        .container{
+            max-width:800px;
+            margin:auto;
+        }
+
+        .checkout-card{
+            background:#fff;
+            border-radius:15px;
+            padding:30px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:25px;
+            color:#333;
+        }
+
+        .item{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 0;
+            border-bottom:1px solid #eee;
+        }
+
+        .item-name{
+            font-weight:bold;
+            color:#444;
+        }
+
+        .item-price{
+            color:#16a34a;
+            font-size:18px;
+        }
+
+        .summary{
+            margin-top:25px;
+            padding-top:15px;
+            border-top:2px solid #ddd;
+            display:flex;
+            justify-content:space-between;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .btn{
+            width:100%;
+            margin-top:30px;
+            padding:15px;
+            border:none;
+            border-radius:10px;
+            background:#16a34a;
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#15803d;
+            transform:translateY(-2px);
+        }
+
+        .secure{
+            text-align:center;
+            margin-top:15px;
+            color:#666;
+            font-size:14px;
+        }
+
+        .empty{
+            text-align:center;
+            color:#666;
+            padding:30px;
+        }
+
+        @media(max-width:600px){
+            .item{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:8px;
+            }
+
+            .summary{
+                flex-direction:column;
+                gap:10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="checkout-card">
+
+        <h2>🛒 Checkout</h2>
+
+    
+
+            <div class="item">
+                <span class="item-name">
+                    {{ item.name }}
+                </span>
+
+                <span class="item-price">
+                    ₹{{ item.price }}
+                </span>
+            </div>
+
+        
+
+            <div class="summary">
+                <span>Total</span>
+                <span>₹{{ total }}</span>
+            </div>
+
+            <form action="/place_order" method="POST">
+                <button type="submit" class="btn">
+                    ✅ Place Order
+                </button>
+            </form>
+
+            <div class="secure">
+                🔒 Your order will be processed securely.
+            </div>
+
+       
+
+            <div class="empty">
+                <h3>Your cart is empty.</h3>
+                <p>Add products to your cart before checking out.</p>
+            </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

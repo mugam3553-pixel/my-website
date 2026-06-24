@@ -1,0 +1,319 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Products</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#4f46e5,#7c3aed);
+            min-height:100vh;
+            padding:40px 20px;
+        }
+
+        .container{
+            max-width:1100px;
+            margin:auto;
+        }
+
+        .card{
+            background:#fff;
+            border-radius:15px;
+            padding:30px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:15px;
+            margin-bottom:25px;
+        }
+
+        h2{
+            color:#333;
+        }
+
+        .add-btn{
+            background:#16a34a;
+            color:white;
+            text-decoration:none;
+            padding:10px 18px;
+            border-radius:8px;
+            transition:.3s;
+        }
+
+        .add-btn:hover{
+            background:#15803d;
+        }
+
+        .search-box{
+            margin-bottom:20px;
+        }
+
+        .search-box input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            padding:14px;
+            border-bottom:1px solid #e5e5e5;
+            text-align:left;
+        }
+
+        th{
+            background:#4f46e5;
+            color:white;
+        }
+
+        tr:hover{
+            background:#f8f8f8;
+        }
+
+        .price{
+            color:#16a34a;
+            font-weight:bold;
+        }
+
+        .delete-btn{
+            background:#dc2626;
+            color:white;
+            text-decoration:none;
+            padding:8px 14px;
+            border-radius:6px;
+            transition:.3s;
+        }
+
+        .delete-btn:hover{
+            background:#b91c1c;
+        }
+
+        @media(max-width:768px){
+            table{
+                display:block;
+                overflow-x:auto;
+            }
+
+            .header{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="header">
+            <h2>📦 Admin Product Management</h2>
+
+            <a href="/admin/add_product" class="add-btn">
+                ➕ Add Product
+            </a>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products..."
+                onkeyup="filterProducts()">
+        </div>
+
+        <table id="productTable">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                <tr>
+                    <td>{{ loop.index }}</td>
+
+                    <td>{{ p.name }}</td>
+
+                    <td class="price">
+                        ₹{{ p.price }}
+                    </td>
+
+                    <td>
+                        <a
+                            href="/admin/delete_product/{{ p._id }}"
+                            class="delete-btn"
+                            onclick="return confirm('Delete this product?');">
+                            🗑 Delete
+                        </a>
+                    </td>
+                </tr>
+
+        
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+function filterProducts() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let rows = document.querySelectorAll("#productTable tbody tr");
+
+    rows.forEach(function(row){
+        if(row.textContent.toLowerCase().includes(input)){
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
+```
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#4f46e5,#7c3aed);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .dashboard{
+            width:90%;
+            max-width:1000px;
+            background:#fff;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,.2);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#333;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            text-decoration:none;
+            background:#4f46e5;
+            color:white;
+            padding:30px;
+            border-radius:12px;
+            text-align:center;
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+            background:#3730a3;
+        }
+
+        .icon{
+            font-size:45px;
+            margin-bottom:10px;
+        }
+
+        h2{
+            margin-bottom:8px;
+        }
+
+        p{
+            font-size:14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+
+    <h1>🛍️ Admin Dashboard</h1>
+
+    <div class="grid">
+
+        <a href="/admin/products" class="card">
+            <div class="icon">📦</div>
+            <h2>Products</h2>
+            <p>Manage all products</p>
+        </a>
+
+        <a href="/admin/add_product" class="card">
+            <div class="icon">➕</div>
+            <h2>Add Product</h2>
+            <p>Create a new product</p>
+        </a>
+
+        <a href="/admin/users" class="card">
+            <div class="icon">👥</div>
+            <h2>Users</h2>
+            <p>View registered users</p>
+        </a>
+
+        <a href="/admin/orders" class="card">
+            <div class="icon">🛒</div>
+            <h2>Orders</h2>
+            <p>Manage customer orders</p>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+```

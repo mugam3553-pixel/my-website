@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<h2>Login Page</h2>
+
+<input type="text" id="username" placeholder="Username">
+<br><br>
+
+<input type="password" id="password" placeholder="Password">
+<br><br>
+
+<button onclick="loginUser()">Login</button>
+
+<p id="msg"></p>
+
+<script>
+function loginUser() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if(data.status === "success"){
+            document.getElementById("msg").innerHTML = "Login Success 🚀";
+
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000);
+
+        } else {
+            document.getElementById("msg").innerHTML = "Invalid Login ❌";
+        }
+    });
+
+}
+</script>
+
+</body>
+</html>

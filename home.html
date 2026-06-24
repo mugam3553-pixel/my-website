@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopZone</title>
+ 
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+/* Navbar */
+
+nav{
+    background:#131921;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 50px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#ff9900;
+}
+
+.search-box{
+    width:40%;
+}
+
+.search-box input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+/* Hero */
+
+.hero{
+    height:400px;
+    background:url('https://images.unsplash.com/photo-1491553895911-0055eca6402d') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+.hero-content{
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    border-radius:10px;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero button{
+    margin-top:15px;
+    padding:12px 25px;
+    background:#ff9900;
+    border:none;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+/* Categories */
+
+.categories{
+    padding:40px;
+    text-align:center;
+}
+
+.category-list{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.category{
+    background:white;
+    padding:20px;
+    width:180px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+/* Products */
+
+.products{
+    padding:40px;
+}
+
+.products h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.price{
+    color:green;
+    font-size:22px;
+    margin:10px 0;
+}
+
+.card button{
+    width:100%;
+    padding:10px;
+    background:#ff9900;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+
+/* Footer */
+
+footer{
+    background:#131921;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+.hero2{
+    height:400px;
+    background:url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:30px;
+}
+
+.hero-content{
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    border-radius:10px;
+}
+
+.hero-content h1{
+    font-size:50px;
+}
+
+.hero-content p{
+    font-size:20px;
+    margin-top:10px;
+}
+
+.hero-content button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    background:#ff9900;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+.hero3{
+    height:400px;
+    background:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:30px;
+}
+.hero4{
+    height:400px;
+    background:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff') center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    margin-top:30px;
+}
+.filter-box{
+    width:250px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.filter-section{
+    margin-top:15px;
+}
+
+.filter-section h4{
+    margin-bottom:10px;
+}
+
+.filter-section label{
+    display:block;
+    margin:8px 0;
+}
+
+#priceRange{
+    width:100%;
+}
+.video-banner{
+    position:relative;
+    height:600px;
+    overflow:hidden;
+}
+
+.video-banner video{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.video-content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    z-index:2;
+}
+
+.video-content h1{
+    font-size:60px;
+}
+
+.video-content p{
+    font-size:24px;
+    margin:15px 0;
+}
+
+.video-content button{
+    padding:12px 25px;
+    background:#ff9900;
+    border:none;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.video-banner::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    z-index:1;
+}
+*{
+  box-sizing:border-box;
+}
+
+.zoom{
+  width:300px;
+  height:300px;
+  margin:50px auto;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+.zoom img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s;
+}
+
+.zoom img:hover{
+    transform:scale(1.2);
+    filter:brightness(1.1);
+}
+.product-container{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.zoom img:hover{
+    transform:scale(1.2);
+    filter:brightness(1.1);
+}
+.cart-btn{
+    background:#ff9900;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    margin-bottom:15px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.cart-btn:hover{
+    background:#e68a00;
+} 
+.product-container{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    padding:30px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    transition:0.5s;
+}
+
+.card:hover img{
+    transform:scale(1.1);
+}
+
+.price{
+    color:green;
+    font-size:22px;
+}
+
+button{
+    background:#ff9900;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    margin:15px;
+    border-radius:5px;
+    cursor:pointer;
+} 
+body{
+    margin:0;
+    font-family:Arial;
+    min-height:100vh;
+
+    background: linear-gradient(-45deg, #131921, #1f3c88, #ff9900, #0f2027);
+    background-size: 400% 400%;
+    animation: bgMove 10s ease infinite;
+}
+
+/* animation */
+@keyframes bgMove {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* dark overlay */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    z-index:-1;
+}
+
+/* NAVBAR */
+nav{
+    background:rgba(19,25,33,0.85);
+    backdrop-filter:blur(10px);
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{color:#ff9900;font-size:26px;font-weight:bold}
+
+.menu button{
+    margin-left:10px;
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.admin-btn{background:red;color:white}
+.logout-btn{background:gray;color:white}
+
+/* PRODUCTS */
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{width:100%;height:200px;object-fit:cover}
+
+.card button{
+    background:#ff9900;
+    border:none;
+    padding:10px;
+    width:90%;
+    margin:10px;
+    color:white;
+    border-radius:5px;
+}
+
+</style>
+
+<nav>
+    <div class="logo">ShopEasy</div>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search products...">
+    </div>
+
+    <div class="menu">
+        <a href="home.html"><button >
+Home
+</button></a>
+        <a href="product.html"><button >
+Products
+</button></a>
+        <a href="cart.html"><button >
+ Cart
+</button></a>   
+        <a href="login.html"><button >
+ Login
+</button></a>
+
+        <button ><a href="admin_login.html">Admin</a></button>
+        <button ><a href="logout.html">Logout</a></button>
+    </div>
+</nav>
+
+<!-- Hero -->
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Big Sale 50% OFF</h1>
+        <p>Best Deals on Electronics & Fashion</p>
+        
+    </div>
+</section>
+<section class="hero2">
+    <div class="hero-content">
+        <h1>New Laptop Collection 💻</h1>
+        <p>Get the Latest Gaming & Business Laptops</p>
+        <button>Explore Now</button>
+    </div>
+</section>
+
+<section class="hero3">
+    <div class="hero-content">
+        <h1>Latest Smartphones 📱</h1>
+        <p>Up To 40% Discount On Premium Mobiles</p>
+        <button>Buy Now</button>
+    </div>
+</section>
+<section class="hero4">
+    <div class="hero-content">
+        <h1>Sports Shoes Collection 👟</h1>
+        <p>Comfort & Style At Best Prices</p>
+        <button>Shop Shoes</button>
+    </div>
+</section>
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+
+  <div class="carousel-inner">
+
+    <!-- PHONE -->
+    <div class="carousel-item active">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" class="d-block w-100" alt="iPhone">
+      <div class="carousel-caption">
+        <h3>iPhone 15</h3>
+      </div>
+    </div>
+
+    <!-- LAPTOP -->
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853" class="d-block w-100" alt="Laptop">
+      <div class="carousel-caption">
+        <h3>MacBook Pro</h3>
+      </div>
+    </div>
+
+    <!-- WATCH -->
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" class="d-block w-100" alt="Watch">
+      <div class="carousel-caption">
+        <h3>Smart Watch</h3>
+      </div>
+    </div>
+
+    <!-- ACCESSORY -->
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1585386959984-a41552231693" class="d-block w-100" alt="Accessories">
+      <div class="carousel-caption">
+        <h3>Wireless Earbuds</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PREV BUTTON -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+
+  <!-- NEXT BUTTON -->
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
+</div>
+<!-- Categories -->
+
+<section class="categories">
+    <h2>Shop By Category</h2>
+    <br>
+
+    <div class="category-list">
+        <div class="category">👟 Shoes</div>
+        <div class="category">💻 Laptops</div>
+        <div class="category">📱 Mobiles</div>
+        <div class="category">⌚ Watches</div>
+        <div class="category">🎧 Accessories</div>
+    </div>
+</section>
+
+<!-- Products -->
+<div class="product-container">
+
+    <!-- Shoes -->
+    <div class="zoom">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Shoes">
+        <h3>Nike Shoes</h3>
+        <p>₹2,999</p>
+    </div>
+
+    <!-- Laptop -->
+    <div class="zoom">
+        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853" alt="Laptop">
+        <h3>Gaming Laptop</h3>
+        <p>₹59,999</p>
+    </div>
+
+    <!-- Mobile -->
+    <div class="zoom">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="Mobile">
+        <h3>iPhone</h3>
+        <button class="cart-btn">
+    Add To Cart 🛒
+</button>
+        <p>₹79,999</p>
+    </div>
+
+    <!-- Watch -->
+    <div class="zoom">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Watch">
+        <h3>Smart Watch</h3>
+        <button class="cart-btn">
+    Add To Cart 🛒
+</button>
+        <p>₹4,999</p>
+    </div>
+
+    <!-- Headphones -->
+    <div class="zoom">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" alt="Headphones">
+        <h3>Wireless Headphones</h3>
+        <button class="cart-btn">
+    Add To Cart 🛒
+</button>
+        <p>₹1,999</p>
+    </div>
+<div class="zoom">
+    <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519" alt="Pair of Adidas running shoes placed on a neutral surface, clean studio lighting, no text, energetic and sporty tone">
+    <h3>Adidas Shoes</h3>
+    <button class="cart-btn">
+    Add To Cart 🛒
+</button>
+    <p>₹3,499</p>
+</div>
+<div class="zoom">
+    <img src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf" alt="Closed MacBook laptop shown from an angled side view on a plain background, modern tech retail vibe, no visible text, neutral professional tone">
+    <h3>MacBook Pro</h3>
+    <button class="cart-btn">
+    Add To Cart 🛒
+</button>
+    <p>₹1,29,999</p>
+</div>
+<div class="zoom">
+    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32" alt="Canon DSLR camera with lens attached on a studio surface, product centered and well lit, conveys professional photography equipment and focused tone">
+    <h3>Canon DSLR Camera</h3>
+    <button class="cart-btn">
+    Add To Cart 🛒
+</button>
+    <p>₹45,999</p>
+</div>
+</div>
+<section class="video-banner">
+
+    <video autoplay muted loop playsinline>
+        <video src="/template/7818622-hd_1080_1920_30fps.mp4"></video>
+        <source src="template\7818622-hd_1080_1920_30fps.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-content">
+        <h1>🛍️ Mega Sale 50% OFF</h1>
+        <p>Best Deals On Shoes, Laptops & Mobiles</p>
+        <button>Shop Now</button>
+    </div>
+
+</section>
+
+
+ <section class="products">
+
+<h2>Featured Products</h2>
+
+<div class="product-grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Pair of casual sneakers shown from side angle on a neutral background, studio lighting, casual energetic tone">
+<div class="card-content">
+<h3>Nike Running Shoes</h3>
+<p class="price">₹2,999</p>
+<button>Add To Cart</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853" alt="Closed gaming laptop on a plain surface, centered and well lit, modern tech retail tone">
+<div class="card-content">
+<h3>Gaming Laptop</h3>
+<p class="price">₹59,999</p>
+<button>Add To Cart</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="Smartphone displayed face up with a minimal home screen on a simple studio background, clear and modern presentation">
+<div class="card-content">
+<h3>iPhone Smartphone</h3>
+<p class="price">₹79,999</p>
+<button>Add To Cart</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30" alt="Smart watch on a wrist showing time and health tracking display, lifestyle oriented in a casual setting, energetic tone">
+<div class="card-content">
+<h3>Smart Watch</h3>
+<p class="price">₹4,999</p>
+<button>Add To Cart</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e" alt="Over ear wireless headphones shown at three quarter angle on a plain background, conveys comfort and immersive audio experience">
+<div class="card-content">
+<h3>Wireless Headphones</h3>
+<p class="price">₹1,999</p>
+<button>Add To Cart</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1583394838336-acd977736f90" alt="Pair of sports shoes photographed from above on a light background, active and sporty mood">
+<div class="card-content">
+<h3>Sports Shoes</h3>
+<p class="price">₹3,499</p>
+<button>Add To Cart</button>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1484704849700-f032a568e944" style="width: 100%; height: 200px; object-fit: cover;">
+<div class="card-content">
+<h3>Boat Headphones</h3>
+<p class="price">₹2,499</p>
+<button>Add To Cart</button>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45" style="width: 100%; height: 200px; object-fit: cover;">
+<div class="card-content">
+<h3>Dell Inspiron</h3>
+<p class="price">₹64,999</p>
+<button>Add To Cart</button>
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519" style="width: 100%; height: 200px; object-fit: cover;">
+<div class="card-content">
+<h3>Adidas Shoes</h3>
+<p class="price">₹4,499</p>
+<button>Add To Cart</button>
+</div>
+</div>
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7" style="width: 100%; height: 200px; object-fit: cover;">
+  <div class="card-content">
+    <h3>Gaming Laptop</h3>
+    <p class="price">₹89,999</p>
+    <button>
+    <a href="cart.html">add to Cart </a>
+    </button> 
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+<footer>
+<p>© 2026 ShopEasy E-Commerce Website | HTML CSS Frontend</p>
+</footer>
+
+<script>
+
+let slider =
+document.getElementById(
+"priceRange"
+);
+
+let output =
+document.getElementById(
+"priceValue"
+);
+
+slider.oninput = function(){
+
+output.innerHTML =
+this.value;
+
+}
+function goAdmin(){
+    window.location.href="admin_login.html";
+}
+
+// LOGOUT
+function logout(){
+    alert("Logged out successfully");
+    window.location.href="login.html";
+}
+
+</script>
+</body>
+</html>  
+

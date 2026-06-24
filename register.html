@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> 
+```
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+}
+
+.card{
+    width:400px;
+    padding:35px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    text-align:center;
+    color:white;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.card p{
+    margin-bottom:25px;
+}
+
+.input-box{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.input-box i:first-child{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#666;
+}
+
+.input-box input{
+    width:100%;
+    padding:14px 45px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+.eye{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#666;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+#strength{
+    display:block;
+    text-align:left;
+    margin-bottom:15px;
+}
+
+.footer{
+    margin-top:20px;
+}
+
+.footer a{
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h2>Create Account</h2>
+        <p>Join us today!</p>
+
+        <form method="POST">
+
+            <div class="input-box">
+                <i class="fa fa-user"></i>
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-box">
+                <i class="fa fa-lock"></i>
+                <input type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Password"
+                       onkeyup="checkStrength()"
+                       required>
+
+                <span class="eye" onclick="togglePassword()">
+                    <i class="fa fa-eye"></i>
+                </span>
+            </div>
+
+            <small id="strength"></small>
+
+            <div class="input-box">
+                <i class="fa fa-lock"></i>
+                <input type="password"
+                       id="confirmPassword"
+                       placeholder="Confirm Password"
+                       required>
+            </div>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <div class="footer">
+            Already have an account?
+            <a href="/login">Login</a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const icon = document.querySelector(".eye i");
+
+    if (password.type === "password") {
+        password.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+    } else {
+        password.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+    }
+}
+
+function checkStrength() {
+    const password = document.getElementById("password").value;
+    const strength = document.getElementById("strength");
+
+    if (password.length < 6) {
+        strength.textContent = "Weak Password";
+        strength.style.color = "red";
+    } else if (password.length < 10) {
+        strength.textContent = "Medium Password";
+        strength.style.color = "orange";
+    } else {
+        strength.textContent = "Strong Password";
+        strength.style.color = "lightgreen";
+    }
+}
+</script>
+
+</body>
+</html>
+```
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+}
+
+.card{
+    width:400px;
+    padding:35px;
+    border-radius:20px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    text-align:center;
+    color:white;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.card p{
+    margin-bottom:25px;
+}
+
+.input-box{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.input-box i:first-child{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#666;
+}
+
+.input-box input{
+    width:100%;
+    padding:14px 45px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+.eye{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#666;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+#strength{
+    display:block;
+    text-align:left;
+    margin-bottom:15px;
+}
+
+.footer{
+    margin-top:20px;
+}
+
+.footer a{
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+</style>
+```

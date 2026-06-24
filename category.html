@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopBy - E-Commerce</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.controls{
+    display:flex;
+    gap:10px;
+    padding:20px;
+    flex-wrap:wrap;
+}
+
+input,select{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+#products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,.2);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.info{
+    padding:15px;
+}
+
+.price{
+    color:green;
+    font-size:22px;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+.old{
+    color:#888;
+    text-decoration:line-through;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    margin-top:8px;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.cart{
+    background:#16a34a;
+    color:white;
+}
+
+.wish{
+    background:#e11d48;
+    color:white;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h2>🛍️ ShopBy</h2>
+
+    <div>
+        ❤️ Wishlist:
+        <span id="wishCount">0</span>
+
+        &nbsp;&nbsp;
+
+        🛒 Cart:
+        <span id="cartCount">0</span>
+    </div>
+</header>
+
+<div class="controls">
+    <input
+        id="search"
+        placeholder="Search products...">
+
+    <select id="sort">
+        <option value="">Sort</option>
+        <option value="low">Price Low → High</option>
+        <option value="high">Price High → Low</option>
+    </select>
+</div>
+
+<div id="products"></div>
+
+<script>
+
+
+const products = [
+
+
+{
+id:1,
+name:"Wireless Headphones",
+price:2499,
+old:3299,
+image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+},
+{
+id:2,
+name:"Smart Watch",
+price:3999,
+old:4999,
+image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+},
+{
+id:3,
+name:"Running Shoes",
+price:1999,
+old:2999,
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+},
+{
+id:4,
+name:"Gaming Mouse",
+price:1499,
+old:1999,
+image:"https://images.unsplash.com/photo-1527814050087-3793815479db?w=600"
+},
+{
+id:5,
+name:"Laptop Backpack",
+price:1799,
+old:2399,
+image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600"
+},
+{
+id:6,
+name:"Bluetooth Speaker",
+price:2899,
+old:3499,
+image:"https://images.unsplash.com/photo-1589003077984-894e133dabab?w=600"
+},
+{
+id:7,
+name:"iPhone 15 Pro",
+price:79999,
+old:84999,
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+},
+{
+id:8,
+name:"Samsung Galaxy",
+price:54999,
+old:59999,
+image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600"
+},
+{
+id:9,
+name:"Gaming Laptop",
+price:89999,
+old:99999,
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+},
+{
+id:10,
+name:"DSLR Camera",
+price:45999,
+old:49999,
+image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600"
+},
+{
+id:11,
+name:"Apple Watch",
+price:24999,
+old:27999,
+image:"https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=600"
+},
+{
+id:12,
+name:"Mechanical Keyboard",
+price:3499,
+old:4299,
+image:"https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=600"
+},
+{
+id:13,
+name:"4K Monitor",
+price:18999,
+old:21999,
+image:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+},
+{
+id:15,
+name:"USB-C Hub",
+price:1299,
+old:1699,
+image:"https://images.unsplash.com/photo-1625842268584-8f3296236761?w=600"
+}
+,{
+  id: 1,
+  name: "iPhone 15 Pro",
+  price: 79999,
+  image: "https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg"
+},
+{
+  id: 2,
+  name: "Samsung Galaxy",
+  price: 54999,
+  image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg"
+},
+{
+  id: 3,
+  name: "MacBook Pro",
+  price: 129999,
+  image: "https://images.pexels.com/photos/18105/pexels-photo.jpg"
+},
+{
+  id: 4,
+  name: "Gaming Laptop",
+  price: 89999,
+  image: "https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg"
+},
+{
+  id: 5,
+  name: "Wireless Headphones",
+  price: 2499,
+  image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg"
+},
+{
+  id: 6,
+  name: "Smart Watch",
+  price: 3999,
+  image: "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg"
+},
+{
+  id: 7,
+  name: "Running Shoes",
+  price: 1999,
+  image: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg"
+},
+{
+  id: 8,
+  name: "Bluetooth Speaker",
+  price: 2899,
+  image: "https://images.pexels.com/photos/63703/pexels-photo-63703.jpeg"
+},
+{
+  id: 9,
+  name: "Gaming Mouse",
+  price: 1499,
+  image: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg"
+},
+{
+  id: 10,
+  name: "Mechanical Keyboard",
+  price: 3499,
+  image: "https://images.pexels.com/photos/841228/pexels-photo-841228.jpeg"
+},
+{
+  id: 11,
+  name: "DSLR Camera",
+  price: 45999,
+  image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg"
+},
+{
+  id: 12,
+  name: "Laptop Backpack",
+  price: 1799,
+  image: "https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg"
+},
+{
+  id: 13,
+  name: "USB-C Hub",
+  price: 1299,
+  image: "https://images.pexels.com/photos/4526413/pexels-photo-4526413.jpeg"
+},
+{
+  id: 14,
+  name: "4K Monitor",
+  price: 18999,
+  image: "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg"
+},
+{
+  id: 15,
+  name: "Tablet",
+  price: 24999,
+  image: "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg"
+} ,
+{
+    id: 1,
+    name: "Wireless Headphones",
+    price: 2499,
+    old: 3299,
+    image: "https://placehold.co/400x300/png?text=Wireless+Headphones"
+},
+
+{
+    id: 2,
+    name: "Smart Watch",
+    price: 3999,
+    old: 4999,
+    image: "https://placehold.co/400x300/png?text=Smart+Watch"
+},
+
+{
+    id: 3,
+    name: "Running Shoes",
+    price: 1999,
+    old: 2999,
+    image: "https://placehold.co/400x300/png?text=Running+Shoes"
+},
+
+{
+    id: 4,
+    name: "Gaming Mouse",
+    price: 1499,
+    old: 1999,
+    image: "https://placehold.co/400x300/png?text=Gaming+Mouse"
+},
+
+{
+    id: 5,
+    name: "Laptop Backpack",
+    price: 1799,
+    old: 2399,
+    image: "https://placehold.co/400x300/png?text=Laptop+Backpack"
+},
+
+{
+    id: 6,
+    name: "Bluetooth Speaker",
+    price: 2899,
+    old: 3499,
+    image: "https://placehold.co/400x300/png?text=Bluetooth+Speaker"
+},
+
+];
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+let wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function updateCounts(){
+
+document.getElementById("cartCount").textContent =
+cart.length;
+
+document.getElementById("wishCount").textContent =
+wishlist.length;
+
+}
+
+function addCart(id){
+
+const product =
+products.find(p=>p.id===id);
+
+cart.push(product);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+updateCounts();
+
+alert("Added to Cart");
+
+}
+
+function addWish(id){
+
+const product =
+products.find(p=>p.id===id);
+
+wishlist.push(product);
+
+localStorage.setItem(
+"wishlist",
+JSON.stringify(wishlist)
+);
+
+updateCounts();
+
+alert("Added to Wishlist");
+
+}
+
+function render(){
+
+let list=[...products];
+
+const search =
+document
+.getElementById("search")
+.value
+.toLowerCase();
+
+list =
+list.filter(
+p=>p.name
+.toLowerCase()
+.includes(search)
+);
+
+const sort =
+document
+.getElementById("sort")
+.value;
+
+if(sort==="low"){
+
+list.sort(
+(a,b)=>a.price-b.price
+);
+
+}
+
+if(sort==="high"){
+
+list.sort(
+(a,b)=>b.price-a.price
+);
+
+}
+
+document.getElementById("products").innerHTML =
+list.map(p=>`
+
+<div class="card">
+
+<img src="${p.image}">
+
+<div class="info">
+
+<h3>${p.name}</h3>
+
+<div class="price">
+₹${p.price}
+<span class="old">
+₹${p.old}
+</span>
+</div>
+
+<button
+class="cart"
+onclick="addCart(${p.id})">
+🛒 Add to Cart
+</button>
+
+<button
+class="wish"
+onclick="addWish(${p.id})">
+❤️ Wishlist
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+render
+);
+
+document
+.getElementById("sort")
+.addEventListener(
+"change",
+render
+);
+
+updateCounts();
+render();
+
+</script>
+
+</body>
+</html>
